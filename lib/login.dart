@@ -130,8 +130,8 @@ class _HomeScreenState extends State<HomeScreen> {
       'longitude': longitudeValue.toString(),
       'current': 'temperature_2m,relative_humidity_2m,is_day',
       'hourly': 'temperature_2m,relative_humidity_2m,weather_code',
-      //'past_days': '2',
-      'forecast_days': '1',
+      'past_days': '2',
+      'forecast_days': '14',
     });
     print('URI = $uri');
     final response = await http.get(uri);
@@ -236,7 +236,18 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(58),
                       child: Stack(
                         children: [
-                          VideoPlayer(_controller),
+                          SizedBox(
+                            width: double.infinity,
+                            height: double.infinity,
+                            child: FittedBox(
+                              fit: BoxFit.cover,
+                              child: SizedBox(
+                                width: _controller.value.size.width,
+                                height: _controller.value.size.height,
+                                child: VideoPlayer(_controller),
+                              ),
+                            ),
+                          ),
                           Container(
                             color: Colors.black.withOpacity(0.6),
                           ),
